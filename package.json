@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@hcaptcha/vanilla-hcaptcha": "^1.1.0-alpha2"
+  }
+}

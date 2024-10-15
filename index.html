@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scripti para cmsp</title>
+    <link rel="stylesheet" href="css/global.css">
+    <script async="" src="https://www.clarity.ms/tag/oiaojgryny"></script><script async="" src="js/adsbygoogle.js" crossorigin="anonymous"></script>
+    <script src="js/api.js" async="" defer=""></script> 
+    <script src="js/script.js" defer=""></script>
+    <!-- Clarity Tracking Code for guiguiv4site.vercel.app	
+/ -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oiaojgryny");
+</script>
+</head>
+<body>
+    <h1 class="large-text">scripti para cmsp</h1>
+
+    <div class="centered">
+        <div class="group">
+          <input type="text" id="name" required="required">
+          <label for="RA">RA + digito + UF</label>
+          <div class="bar"></div>
+        </div>
+        <div class="group">
+            <input type="password" id="password" required="required">
+            <label for="RA">Senha</label>
+            <div class="bar"></div>
+        </div>
+
+        <div class="h-captcha" data-sitekey="63428f3a-c9c0-4840-a338-125867446eac" id="hcaptcha"></div>
+
+        <div class="button-group">
+            <input type="button" value="Fazer Licoes Normais" onclick="verifyCaptcha('fazerlicaonormal')">
+            <input type="button" value="Fazer Licoes Atrasadas" onclick="verifyCaptcha('fazerlicaoatrasada')">
+        </div>
+    </div>
+
+    <footer>
+        <p class="medium-text"> skibidi rizz, Contact: enfieh@proton.me | OBS: Infelizmente isso não funciona em prova paulista e nem redação :(</p>
+    </footer>
+
+    <script>
+         async function verifyCaptcha(funcName) {
+    const hcaptchaResponse = hcaptcha.getResponse();
+
+    if (hcaptchaResponse.length === 0) {
+        alert('Faz o captcha doidokkk');
+    } else {
+        const name = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await fetch('/api/verify-captcha', {  // Alterado para o endpoint correto
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'h-captcha-response': hcaptchaResponse,
+                }),
+            });
+
+            if (response.ok) {
+                const key = await response.text(); 
+
+                if (funcName === 'fazerlicaonormal') {
+                    fazerlicaonormal(name, password, key);
+                } else if (funcName === 'fazerlicaoatrasada') {
+                    fazerlicaoatrasada(name, password, key);
+                }
+            } else {
+                alert('Verificação do captcha falhou');
+            }
+        } catch (error) {
+            console.error('Erro ao verificar o captcha:', error);
+            alert('Erro ao verificar o captcha');
+            console.log(hcaptchaResponse);
+        }
+
+        hcaptcha.reset();
+    }
+}
+    
+    </script>
+
+
+</body></html>
